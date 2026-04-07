@@ -49,7 +49,7 @@ Data mengalir melalui tiga tahap utama untuk menjamin kualitas dan integritas:
 ---
 
 ## Challenges & Known Issues
-* **Anti-Bot Protection:** Platform memiliki proteksi CAPTCHA dinamis. Project dilengkapi sistem monitoring screenshot.
+* **Anti-Bot Protection:** Platform memiliki proteksi CAPTCHA dinamis. Project dilengkapi sistem monitoring screenshot untuk debugging.
 
 ---
 
