@@ -1,0 +1,43 @@
+[2026-04-05T07:23:14.334+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509
+[2026-04-05T07:23:14.334+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze'
+[2026-04-05T07:23:14.378+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509
+[2026-04-05T07:23:14.379+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze'
+[2026-04-05T07:23:14.424+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: job_search_medallion_pipeline_v1.scrape_jobstreet_to_bronze manual__2026-04-05T07:06:46.353973+00:00 [queued]>
+[2026-04-05T07:23:14.431+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: job_search_medallion_pipeline_v1.scrape_jobstreet_to_bronze manual__2026-04-05T07:06:46.353973+00:00 [queued]>
+[2026-04-05T07:23:14.432+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 4
+[2026-04-05T07:23:14.446+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): scrape_jobstreet_to_bronze> on 2026-04-05 07:06:46.353973+00:00
+[2026-04-05T07:23:14.451+0000] {standard_task_runner.py:60} INFO - Started process 363 to run task
+[2026-04-05T07:23:14.456+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'job_search_medallion_pipeline_v1', 'scrape_jobstreet_to_bronze', 'manual__2026-04-05T07:06:46.353973+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/job_scraper_dag.py', '--cfg-path', '/tmp/tmpvmnla9ue']
+[2026-04-05T07:23:14.459+0000] {standard_task_runner.py:88} INFO - Job 23: Subtask scrape_jobstreet_to_bronze
+[2026-04-05T07:23:14.518+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509
+[2026-04-05T07:23:14.519+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=manual__2026-04-05T07:06:46.353973+00:00/task_id=scrape_jobstreet_to_bronze'
+[2026-04-05T07:23:14.528+0000] {task_command.py:423} INFO - Running <TaskInstance: job_search_medallion_pipeline_v1.scrape_jobstreet_to_bronze manual__2026-04-05T07:06:46.353973+00:00 [running]> on host f3fed5265881
+[2026-04-05T07:23:14.620+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='rafif' AIRFLOW_CTX_DAG_ID='job_search_medallion_pipeline_v1' AIRFLOW_CTX_TASK_ID='scrape_jobstreet_to_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-04-05T07:06:46.353973+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-04-05T07:06:46.353973+00:00'
+[2026-04-05T07:23:14.621+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-05T07:23:14.622+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python3 /opt/***/dags/scripts/scraper_jobstreet.py']
+[2026-04-05T07:23:14.636+0000] {subprocess.py:86} INFO - Output:
+[2026-04-05T07:25:23.950+0000] {subprocess.py:93} INFO - Menghubungkan ke Selenium Grid di Docker untuk Jobstreet...
+[2026-04-05T07:25:23.956+0000] {subprocess.py:93} INFO - Mulai scraping Jobstreet untuk keyword: 'data', maksimal 5 halaman...
+[2026-04-05T07:25:23.957+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.957+0000] {subprocess.py:93} INFO - --- Jobstreet: Membuka Halaman 1 ---
+[2026-04-05T07:25:23.957+0000] {subprocess.py:93} INFO - Ditemukan 32 lowongan di halaman 1
+[2026-04-05T07:25:23.958+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.958+0000] {subprocess.py:93} INFO - --- Jobstreet: Membuka Halaman 2 ---
+[2026-04-05T07:25:23.958+0000] {subprocess.py:93} INFO - Ditemukan 32 lowongan di halaman 2
+[2026-04-05T07:25:23.959+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.959+0000] {subprocess.py:93} INFO - --- Jobstreet: Membuka Halaman 3 ---
+[2026-04-05T07:25:23.964+0000] {subprocess.py:93} INFO - Ditemukan 32 lowongan di halaman 3
+[2026-04-05T07:25:23.964+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.965+0000] {subprocess.py:93} INFO - --- Jobstreet: Membuka Halaman 4 ---
+[2026-04-05T07:25:23.965+0000] {subprocess.py:93} INFO - Ditemukan 32 lowongan di halaman 4
+[2026-04-05T07:25:23.965+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.966+0000] {subprocess.py:93} INFO - --- Jobstreet: Membuka Halaman 5 ---
+[2026-04-05T07:25:23.966+0000] {subprocess.py:93} INFO - Ditemukan 32 lowongan di halaman 5
+[2026-04-05T07:25:23.967+0000] {subprocess.py:93} INFO - Menutup browser...
+[2026-04-05T07:25:23.982+0000] {subprocess.py:93} INFO - 
+[2026-04-05T07:25:23.982+0000] {subprocess.py:93} INFO - TOTAL DATA JOBSTREET DISCRAPE: 160
+[2026-04-05T07:25:23.983+0000] {subprocess.py:93} INFO - ✅ [BRONZE] 160 data Jobstreet berhasil masuk ke DB.
+[2026-04-05T07:25:24.127+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-05T07:25:24.174+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=job_search_medallion_pipeline_v1, task_id=scrape_jobstreet_to_bronze, execution_date=20260405T070646, start_date=20260405T072314, end_date=20260405T072524
+[2026-04-05T07:25:24.244+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-04-05T07:25:24.274+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -36,9 +36,13 @@ services:
     restart: always
     depends_on:
       - postgres
+    env_file:
+      - .env
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      # --- TAMBAHKAN BARIS DI BAWAH INI ---
+      _PIP_ADDITIONAL_REQUIREMENTS: "pandas sqlalchemy psycopg2-binary selenium python-dotenv"
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
@@ -53,11 +57,16 @@ services:
     restart: always
     depends_on:
       - postgres
+    env_file:
+      - .env
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      # --- TAMBAHKAN BARIS DI BAWAH INI ---
+      _PIP_ADDITIONAL_REQUIREMENTS: "pandas sqlalchemy psycopg2-binary selenium python-dotenv"
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
     command: scheduler

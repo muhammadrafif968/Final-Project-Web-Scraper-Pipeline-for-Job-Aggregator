@@ -1,0 +1,49 @@
+[2026-04-06T02:07:15.113+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509
+[2026-04-06T02:07:15.114+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze'
+[2026-04-06T02:07:15.157+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509
+[2026-04-06T02:07:15.157+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze'
+[2026-04-06T02:07:15.203+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: job_search_medallion_pipeline_v1.scrape_glints_to_bronze scheduled__2026-04-05T00:00:00+00:00 [queued]>
+[2026-04-06T02:07:15.210+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: job_search_medallion_pipeline_v1.scrape_glints_to_bronze scheduled__2026-04-05T00:00:00+00:00 [queued]>
+[2026-04-06T02:07:15.210+0000] {taskinstance.py:2170} INFO - Starting attempt 5 of 6
+[2026-04-06T02:07:15.227+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): scrape_glints_to_bronze> on 2026-04-05 00:00:00+00:00
+[2026-04-06T02:07:15.234+0000] {standard_task_runner.py:60} INFO - Started process 595 to run task
+[2026-04-06T02:07:15.237+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'job_search_medallion_pipeline_v1', 'scrape_glints_to_bronze', 'scheduled__2026-04-05T00:00:00+00:00', '--job-id', '83', '--raw', '--subdir', 'DAGS_FOLDER/job_scraper_dag.py', '--cfg-path', '/tmp/tmp7rpkhnug']
+[2026-04-06T02:07:15.241+0000] {standard_task_runner.py:88} INFO - Job 83: Subtask scrape_glints_to_bronze
+[2026-04-06T02:07:15.303+0000] {logging_mixin.py:188} INFO - Changing /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509
+[2026-04-06T02:07:15.303+0000] {logging_mixin.py:188} INFO - Failed to change /opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze permission to 509: [Errno 1] Operation not permitted: '/opt/***/logs/dag_id=job_search_medallion_pipeline_v1/run_id=scheduled__2026-04-05T00:00:00+00:00/task_id=scrape_glints_to_bronze'
+[2026-04-06T02:07:15.314+0000] {task_command.py:423} INFO - Running <TaskInstance: job_search_medallion_pipeline_v1.scrape_glints_to_bronze scheduled__2026-04-05T00:00:00+00:00 [running]> on host fa0bf68e89d0
+[2026-04-06T02:07:15.406+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='rafif' AIRFLOW_CTX_DAG_ID='job_search_medallion_pipeline_v1' AIRFLOW_CTX_TASK_ID='scrape_glints_to_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-04-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-04-05T00:00:00+00:00'
+[2026-04-06T02:07:15.407+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-04-06T02:07:15.408+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python3 /opt/***/dags/scripts/scraper_glints.py']
+[2026-04-06T02:07:15.420+0000] {subprocess.py:86} INFO - Output:
+[2026-04-06T02:09:43.694+0000] {subprocess.py:93} INFO - Mencoba login Glints ID: gigachaacc2@gmail.com...
+[2026-04-06T02:09:43.694+0000] {subprocess.py:93} INFO - -> Mengetuk pintu 'Masuk dengan Email'...
+[2026-04-06T02:09:43.695+0000] {subprocess.py:93} INFO - -> Email terisi...
+[2026-04-06T02:09:43.695+0000] {subprocess.py:93} INFO - -> Password terisi & Enter ditekan...
+[2026-04-06T02:09:43.695+0000] {subprocess.py:93} INFO - -> Tombol mungkin sudah terproses lewat Enter.
+[2026-04-06T02:09:43.696+0000] {subprocess.py:93} INFO - ✅ Login Berhasil! Sesi aman.
+[2026-04-06T02:09:43.696+0000] {subprocess.py:93} INFO - 
+[2026-04-06T02:09:43.696+0000] {subprocess.py:93} INFO - --- Mengambil Halaman 1 ---
+[2026-04-06T02:09:43.696+0000] {subprocess.py:93} INFO - Ditemukan 712 lowongan.
+[2026-04-06T02:09:43.697+0000] {subprocess.py:93} INFO - Total Unik Sementara: 30
+[2026-04-06T02:09:43.697+0000] {subprocess.py:93} INFO - 
+[2026-04-06T02:09:43.697+0000] {subprocess.py:93} INFO - --- Mengambil Halaman 2 ---
+[2026-04-06T02:09:43.698+0000] {subprocess.py:93} INFO - Ditemukan 701 lowongan.
+[2026-04-06T02:09:43.698+0000] {subprocess.py:93} INFO - Total Unik Sementara: 60
+[2026-04-06T02:09:43.698+0000] {subprocess.py:93} INFO - 
+[2026-04-06T02:09:43.698+0000] {subprocess.py:93} INFO - --- Mengambil Halaman 3 ---
+[2026-04-06T02:09:43.699+0000] {subprocess.py:93} INFO - Ditemukan 705 lowongan.
+[2026-04-06T02:09:43.699+0000] {subprocess.py:93} INFO - Total Unik Sementara: 89
+[2026-04-06T02:09:43.699+0000] {subprocess.py:93} INFO - 
+[2026-04-06T02:09:43.700+0000] {subprocess.py:93} INFO - --- Mengambil Halaman 4 ---
+[2026-04-06T02:09:43.700+0000] {subprocess.py:93} INFO - Ditemukan 707 lowongan.
+[2026-04-06T02:09:43.700+0000] {subprocess.py:93} INFO - Total Unik Sementara: 119
+[2026-04-06T02:09:43.701+0000] {subprocess.py:93} INFO - 
+[2026-04-06T02:09:43.701+0000] {subprocess.py:93} INFO - --- Mengambil Halaman 5 ---
+[2026-04-06T02:09:43.701+0000] {subprocess.py:93} INFO - Ditemukan 1411 lowongan.
+[2026-04-06T02:09:43.702+0000] {subprocess.py:93} INFO - Total Unik Sementara: 150
+[2026-04-06T02:09:43.702+0000] {subprocess.py:93} INFO - ✅ [BRONZE] 150 data Glints berhasil masuk ke DB.
+[2026-04-06T02:09:43.783+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-04-06T02:09:43.814+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=job_search_medallion_pipeline_v1, task_id=scrape_glints_to_bronze, execution_date=20260405T000000, start_date=20260406T020715, end_date=20260406T020943
+[2026-04-06T02:09:43.870+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-04-06T02:09:43.894+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
