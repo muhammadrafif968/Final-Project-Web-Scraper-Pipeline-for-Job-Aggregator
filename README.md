@@ -3,7 +3,7 @@
 Pipeline ETL otomatis untuk mengumpulkan, mengolah, dan menyajikan data lowongan kerja dari berbagai platform (Glints & Jobstreet) menggunakan arsitektur **Medallion** di dalam lingkungan **Docker**.
 
 ## Overview
-Project ini mengotomatisasi seluruh alur data dari tahap *scraping* (extraction) hingga tahap agregasi siap saji (Gold layer). Pipeline ini dikelola menggunakan **Apache Airflow** sebagai orchestrator dan **Selenium Grid** untuk menangani browser secara terdistribusi.
+Project ini mengotomatisasi seluruh alur data dari tahap *scraping* (extraction) hingga tahap agregasi (Gold layer). Pipeline ini dikelola menggunakan **Apache Airflow** sebagai orchestrator dan **Selenium Grid** untuk menangani browser secara terdistribusi.
 
 ---
 
