@@ -55,3 +55,4 @@ Data mengalir melalui tiga tahap utama untuk menjamin kualitas dan integritas:
 
 ## Author
 **Muhammad Rafif** - Data Engineering Enthusiast
+[PPT](https://docs.google.com/presentation/d/1f6Z6mj0887IGQr66CTPCFglpTzoZxqPv/edit?usp=sharing&ouid=115936196892849598059&rtpof=true&sd=true)
