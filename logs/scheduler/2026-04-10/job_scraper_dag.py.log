@@ -1804,3 +1804,24 @@
 [2026-04-10T13:41:55.071+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:41:55.070+0000] {dag.py:3036} INFO - Sync 1 DAGs
 [2026-04-10T13:41:55.093+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:41:55.093+0000] {dag.py:3823} INFO - Setting next_dagrun for job_search_medallion_pipeline_v1 to 2026-04-10 00:00:00+00:00, run_after=2026-04-11 00:00:00+00:00
 [2026-04-10T13:41:55.117+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/job_scraper_dag.py took 0.098 seconds
+[2026-04-10T13:42:25.407+0000] {processor.py:161} INFO - Started process (PID=744) to work on /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:25.408+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/job_scraper_dag.py for tasks to queue
+[2026-04-10T13:42:25.409+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:25.409+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:25.441+0000] {processor.py:840} INFO - DAG(s) 'job_search_medallion_pipeline_v1' retrieved from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:25.474+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:25.474+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-04-10T13:42:25.496+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:25.495+0000] {dag.py:3823} INFO - Setting next_dagrun for job_search_medallion_pipeline_v1 to 2026-04-10 00:00:00+00:00, run_after=2026-04-11 00:00:00+00:00
+[2026-04-10T13:42:25.517+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/job_scraper_dag.py took 0.113 seconds
+[2026-04-10T13:42:55.701+0000] {processor.py:161} INFO - Started process (PID=749) to work on /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:55.703+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/job_scraper_dag.py for tasks to queue
+[2026-04-10T13:42:55.703+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:55.703+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:55.730+0000] {processor.py:840} INFO - DAG(s) 'job_search_medallion_pipeline_v1' retrieved from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:42:55.765+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:55.765+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-04-10T13:42:55.792+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:42:55.791+0000] {dag.py:3823} INFO - Setting next_dagrun for job_search_medallion_pipeline_v1 to 2026-04-10 00:00:00+00:00, run_after=2026-04-11 00:00:00+00:00
+[2026-04-10T13:42:55.813+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/job_scraper_dag.py took 0.116 seconds
+[2026-04-10T13:43:26.166+0000] {processor.py:161} INFO - Started process (PID=754) to work on /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:43:26.167+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/job_scraper_dag.py for tasks to queue
+[2026-04-10T13:43:26.168+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:43:26.167+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:43:26.201+0000] {processor.py:840} INFO - DAG(s) 'job_search_medallion_pipeline_v1' retrieved from /opt/airflow/dags/job_scraper_dag.py
+[2026-04-10T13:43:26.236+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:43:26.236+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-04-10T13:43:26.259+0000] {logging_mixin.py:188} INFO - [2026-04-10T13:43:26.259+0000] {dag.py:3823} INFO - Setting next_dagrun for job_search_medallion_pipeline_v1 to 2026-04-10 00:00:00+00:00, run_after=2026-04-11 00:00:00+00:00
+[2026-04-10T13:43:26.284+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/job_scraper_dag.py took 0.121 seconds
