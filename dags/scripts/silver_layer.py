@@ -14,7 +14,7 @@ def run_silver():
         job_id VARCHAR(100) PRIMARY KEY,
         title TEXT, company TEXT, salary TEXT,
         salary_min NUMERIC, 
-        salary_max NUMERIC, -- Tambahkan max sekalian buat range gaji
+        salary_max NUMERIC,
         currency VARCHAR(10),
         city TEXT, province TEXT, posted_time TEXT,
         link TEXT, scrape_date TIMESTAMP, source VARCHAR(50)
@@ -30,9 +30,15 @@ def run_silver():
         CASE 
             WHEN salary ~ '[0-9]' THEN 
                 (
-                    -- Pakai SUBSTRING untuk mengambil angka pertama saja dengan aman
-                    SUBSTRING(regexp_replace(salary, ',', '', 'g') FROM '([0-9.]+)')::numeric 
-                    * CASE WHEN salary ILIKE '%K%' THEN 1000 ELSE 1 END
+                    -- 1. Hapus titik (.) pemisah ribuan
+                    -- 2. Ganti koma (,) jadi titik desimal (.)
+                    -- 3. Ekstrak angkanya, mau ada desimal atau utuh
+                    SUBSTRING(regexp_replace(regexp_replace(salary, '\.', '', 'g'), ',', '.') FROM '([0-9]+\.?[0-9]*)')::numeric 
+                    * CASE 
+                        WHEN salary ILIKE '%jt%' OR salary ILIKE '%juta%' THEN 1000000 
+                        WHEN salary ILIKE '%k%' THEN 1000 
+                        ELSE 1 
+                      END
                 )
             ELSE NULL 
         END as salary_min,
@@ -41,36 +47,37 @@ def run_silver():
         CASE 
             WHEN salary ~ '[-–]' THEN 
                 (
-                    -- 1. Samakan dulu tanda strip (–) jadi (-) biasa
-                    -- 2. Belah dua teksnya pakai split_part, ambil bagian kedua
-                    -- 3. Baru ekstrak angkanya
                     SUBSTRING(
-                        split_part(regexp_replace(regexp_replace(salary, ',', '', 'g'), '–', '-'), '-', 2) 
-                    FROM '([0-9.]+)')::numeric 
-                    * CASE WHEN salary ILIKE '%K%' THEN 1000 ELSE 1 END
+                        split_part(
+                            regexp_replace(regexp_replace(regexp_replace(salary, '\.', '', 'g'), ',', '.'), '–', '-'), 
+                            '-', 2
+                        ) 
+                    FROM '([0-9]+\.?[0-9]*)')::numeric 
+                    * CASE 
+                        WHEN salary ILIKE '%jt%' OR salary ILIKE '%juta%' THEN 1000000 
+                        WHEN salary ILIKE '%k%' THEN 1000 
+                        ELSE 1 
+                      END
                 )
             ELSE NULL 
         END as salary_max,
 
+        -- LOGIKA CURRENCY (Biar nggak SGD semua)
         CASE 
-            WHEN salary ILIKE '%$%' OR source = 'Glints' THEN 'SGD'
+            WHEN salary ILIKE '%$%' OR salary ILIKE '%SGD%' THEN 'SGD'
             WHEN salary ILIKE '%Rp%' OR salary ILIKE '%IDR%' THEN 'IDR'
             ELSE 'Unknown'
         END as currency,
 
         COALESCE(city, 'Tidak Spesifik'), 
         COALESCE(province, 'Tidak Spesifik'), 
+        
         -- LOGIKA STANDARISASI WAKTU POSTING (posted_time)
         CASE 
-            -- 1. Tangani yang lebih dari 30 hari (more than thirty days ago / 30+ days ago)
             WHEN LOWER(posted_time) ILIKE '%more than thirty%' OR posted_time ~ '30\+' THEN 'more than 30 days ago'
-
-            -- 2. Tangani yang format singkatan (4d ago, 12h ago)
             WHEN posted_time ~ '^([0-9]+)d ago' THEN regexp_replace(posted_time, '^([0-9]+)d ago', '\1 days ago')
             WHEN posted_time ~ '^([0-9]+)h ago' THEN regexp_replace(posted_time, '^([0-9]+)h ago', '\1 hours ago')
             WHEN posted_time ~ '^([0-9]+)m ago' THEN regexp_replace(posted_time, '^([0-9]+)m ago', '\1 months ago')
-            
-            -- 3. Tangani yang format teks bahasa Inggris (1 sampai 30)
             ELSE 
                 REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
                 REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(
@@ -96,8 +103,10 @@ def run_silver():
     ON CONFLICT (job_id) DO UPDATE SET 
         scrape_date = EXCLUDED.scrape_date,
         salary_min = EXCLUDED.salary_min,
-        salary_max = EXCLUDED.salary_max;
-    -- Hapus data yang lebih dari 30 hari karena sudah tidak relevan (sesuai dengan logika posted_time yang sudah distandarisasi)
+        salary_max = EXCLUDED.salary_max,
+        currency = EXCLUDED.currency;
+        
+    -- Hapus data yang lebih dari 30 hari
     DELETE FROM silver.jobs WHERE posted_time = 'more than 30 days ago';
     """
 

@@ -69,17 +69,15 @@ def run_scraper_jobstreet():
         for page in range(1, MAX_PAGES + 1):
             print(f"\n--- Jobstreet: Membuka Halaman {page} ---")
             
-            # REVISI URL: Gunakan id.jobstreet.com jika target Indonesia
-            url = f"https://id.jobstreet.com/id/{formatted_keyword}-jobs?page={page}"
+            url = f"https://id.jobstreet.com/id/jobs?keywords={SEARCH_KEYWORD}&page={page}"
             driver.get(url)
             
-            # Kasih waktu lebih lama buat Jobstreet (minimal 7-10 detik)
             time.sleep(7) 
 
             try:
-                # Cari elemen kartu lowongan dengan selector data-automation (standar SEEK)
+                # --- REVISI 1: Targetkan mata bot ke "Overlay" yang kamu temukan ---
                 WebDriverWait(driver, 20).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, "article[data-automation='jobCard']"))
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "a[data-automation='job-list-item-link-overlay']"))
                 )
             except:
                 print(f"Data tidak ditemukan di halaman {page}. Ambil screenshot...")
@@ -90,45 +88,55 @@ def run_scraper_jobstreet():
             driver.execute_script("window.scrollTo(0, 800);")
             time.sleep(2)
 
-            # Ambil semua card
-            job_cards = driver.find_elements(By.CSS_SELECTOR, "article[data-automation='jobCard']")
-            print(f"Ditemukan {len(job_cards)} lowongan di halaman {page}")
+            # --- REVISI 2: Ambil semua link overlay sebagai basis kartu ---
+            overlays = driver.find_elements(By.CSS_SELECTOR, "a[data-automation='job-list-item-link-overlay']")
+            print(f"Ditemukan {len(overlays)} lowongan di halaman {page}")
 
-            for card in job_cards:
+            for overlay in overlays:
                 try:
-                    # 1. Title & Link
-                    title_elem = card.find_element(By.CSS_SELECTOR, "a[data-automation='jobTitle']")
-                    title = title_elem.text.strip()
-                    link = title_elem.get_attribute("href").split('?')[0]
-                    
-                    # 2. ID
+                    # 1. ID & Link (Kita bisa langsung dapat ini dari elemen overlay!)
+                    link = overlay.get_attribute("href").split('?')[0]
                     raw_id = link.rstrip('/').split('/')[-1] 
                     job_id = f"js-{raw_id}"
 
                     if job_id in scraped_data: continue
 
-                    # 3. Company
+                    # 2. Cari "Bungkus" Utama (Naik ke parent terdekat yang membungkus teks)
                     try:
-                        company = card.find_element(By.CSS_SELECTOR, "a[data-automation='jobCompany']").text.strip()
+                        # Jobstreet biasanya pakai <article> atau <div> 3 level di atas overlay
+                        card = overlay.find_element(By.XPATH, "./ancestor::article | ./ancestor::div[3]")
+                    except:
+                        # Fallback aman
+                        card = overlay.find_element(By.XPATH, "../..")
+
+                    # 3. Title (Kombinasi data-automation terbaru atau tag Heading 3)
+                    try:
+                        title = card.find_element(By.CSS_SELECTOR, "[data-automation='jobTitle'], h3").text.strip()
+                    except:
+                        title = "Judul Tidak Diketahui"
+
+                    # 4. Company
+                    try:
+                        company = card.find_element(By.CSS_SELECTOR, "[data-automation='jobCompany']").text.strip()
                     except:
                         company = "Perusahaan Dirahasiakan"
 
-                    # 4. Location
+                    # 5. Location
                     try:
-                        full_loc = card.find_element(By.CSS_SELECTOR, "a[data-automation='jobLocation']").text.strip()
+                        full_loc = card.find_element(By.CSS_SELECTOR, "[data-automation='jobLocation']").text.strip()
                         city, province = split_jobstreet_location(full_loc)
                     except:
                         city, province = "Indonesia", "Indonesia"
 
-                    # 5. Salary
+                    # 6. Salary
                     try:
-                        salary = card.find_element(By.CSS_SELECTOR, "span[data-automation='jobSalary']").text.strip()
+                        salary = card.find_element(By.CSS_SELECTOR, "[data-automation='jobSalary']").text.strip()
                     except:
                         salary = "Tidak Dicantumkan"
 
-                    # 6. Posted Time
+                    # 7. Posted Time
                     try:
-                        posted_time = card.find_element(By.CSS_SELECTOR, "span[data-automation='jobListingDate']").text.strip()
+                        posted_time = card.find_element(By.CSS_SELECTOR, "[data-automation='jobListingDate']").text.strip()
                     except:
                         posted_time = "Baru saja"
 
@@ -145,7 +153,7 @@ def run_scraper_jobstreet():
                         "source": "Jobstreet"
                     }
 
-                except:
+                except Exception as e:
                     continue
 
             print(f"Total Unik Jobstreet: {len(scraped_data)}")
